@@ -249,6 +249,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/11/Kali-JDK1-8安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一寸红蓝">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一寸红蓝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/11/Kali-JDK1-8安装/" itemprop="url">Kali JDK1.8安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T19:31:58+08:00">
+                2018-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/11/Kali-JDK1-8安装/" class="leancloud_visitors" data-flag-title="Kali JDK1.8安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;最近在Linux上运行java程序出现Unsupported major.minor version 51.0错误，后发现是编译后的java程序与Linux上的java Se版本不一致而产生的错误。提示的版本号与Java se对应表如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JavaSE 8 = 52 (0x34 hex),</span><br><span class="line">JavaSE 7 = 51 (0x33 hex),</span><br><span class="line">JavaSE 6 = 50 (0x32 hex),</span><br><span class="line">JavaSE 5 = 49 (0x31 hex),</span><br><span class="line">J2SE 1.4 = 48 (0x30 hex),</span><br><span class="line">J2SE 1.3 = 47 (0x2F hex),</span><br><span class="line">J2SE 1.2 = 46 (0x2E hex),</span><br><span class="line">J2SE 1.1 = 45 (0x2D hex)</span><br></pre></td></tr></table></figure></p>
+<h1 id="下面介绍一下Kali下JDK1-8的安装过程"><a href="#下面介绍一下Kali下JDK1-8的安装过程" class="headerlink" title="下面介绍一下Kali下JDK1.8的安装过程"></a>下面介绍一下Kali下JDK1.8的安装过程</h1><h3 id="1、下载jdk安装包"><a href="#1、下载jdk安装包" class="headerlink" title="1、下载jdk安装包"></a>1、下载jdk安装包</h3><p>&emsp;&emsp;点击下面的链接选择合适的JDK版本下载：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a>    </p>
+<h3 id="2、建立目录，将下载的jdk复制过去并解压"><a href="#2、建立目录，将下载的jdk复制过去并解压" class="headerlink" title="2、建立目录，将下载的jdk复制过去并解压"></a>2、建立目录，将下载的jdk复制过去并解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /usr/local/java</span><br><span class="line">sudo cp jdk-8u161-linux-x64.tar.gz /usr/local/java</span><br><span class="line">cd /usr/local/java</span><br><span class="line">sudo tar xzvf jdk-8u91-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br><span class="line">###复制以下代码到文件结尾</span><br><span class="line">JAVA_HOME=/usr/local/java/jdk1.8.0_161</span><br><span class="line">PATH=$PATH:$HOME/bin:$JAVA_HOME/bin</span><br><span class="line">export JAVA_HOME</span><br><span class="line">export PATH</span><br></pre></td></tr></table></figure>
+<h3 id="4、通知系统java的位置"><a href="#4、通知系统java的位置" class="headerlink" title="4、通知系统java的位置"></a>4、通知系统java的位置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install &quot;/usr/bin/java&quot; &quot;java&quot; &quot;/usr/local/java/jdk1.8.0_161/bin/java&quot; 1</span><br><span class="line">sudo update-alternatives --install &quot;/usr/bin/javac&quot; &quot;javac&quot; &quot;/usr/local/java/jdk1.8.0_161/bin/javac&quot; 1</span><br><span class="line">sudo update-alternatives --install &quot;/usr/bin/javaws&quot; &quot;javaws&quot; &quot;/usr/local/java/jdk1.8.0_161/bin/javaws&quot; 1</span><br><span class="line">sudo update-alternatives --install &quot;/usr/bin/javaws&quot; &quot;javaws&quot; &quot;/usr/local/java/jdk1.8.0_161/bin/javaws&quot; 1</span><br></pre></td></tr></table></figure>
+<h3 id="5、设置默认JDK"><a href="#5、设置默认JDK" class="headerlink" title="5、设置默认JDK"></a>5、设置默认JDK</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --set java /usr/local/java/jdk1.8.0_161/bin/java</span><br><span class="line">sudo update-alternatives --set javac /usr/local/java/jdk1.8.0_161/bin/javac</span><br><span class="line">sudo update-alternatives --set javaws /usr/local/java/jdk1.8.0_161/bin/javaws</span><br></pre></td></tr></table></figure>
+<h3 id="6、重新载入profile"><a href="#6、重新载入profile" class="headerlink" title="6、重新载入profile"></a>6、重新载入profile</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>通过 java -version以及javac -version即可看到是否安装完成<br>参考：<a href="http://blog.csdn.net/qq_29343201/article/details/51926430" target="_blank" rel="noopener">http://blog.csdn.net/qq_29343201/article/details/51926430</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/2018计划/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1075,7 +1236,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1086,7 +1247,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
