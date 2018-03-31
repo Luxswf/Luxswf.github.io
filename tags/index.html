@@ -256,10 +256,10 @@
         
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-                目前共计 3 个标签
+                目前共计 4 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/PHP/" style="font-size: 30px; color: #111">PHP</a> <a href="/tags/Web/" style="font-size: 30px; color: #111">Web</a> <a href="/tags/技巧/" style="font-size: 12px; color: #ccc">技巧</a>
+              <a href="/tags/PHP/" style="font-size: 30px; color: #111">PHP</a> <a href="/tags/Web/" style="font-size: 30px; color: #111">Web</a> <a href="/tags/Windows开发/" style="font-size: 12px; color: #ccc">Windows开发</a> <a href="/tags/技巧/" style="font-size: 12px; color: #ccc">技巧</a>
             </div>
           </div>
         
@@ -330,7 +330,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -341,7 +341,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -352,7 +352,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -400,8 +400,6 @@
   
 </div>
 
-
-  <div class="powered-by"></div>
 
 
         
@@ -570,6 +568,13 @@
         guest_info:guest,
         pageSize:'10' || 10,
     });
+    //新增以下代码即可，可以移除.info下所有子节点。
+    var infoEle = document.querySelector('#comments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+    infoEle.childNodes.forEach(function(item) {
+      item.parentNode.removeChild(item);
+    });
+}
   </script>
 
 
