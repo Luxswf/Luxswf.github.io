@@ -249,6 +249,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/Hashcat爆破/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一寸红蓝">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一寸红蓝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/14/Hashcat爆破/" itemprop="url">Hashcat爆破</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T20:56:45+08:00">
+                2020-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/14/Hashcat爆破/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/14/Hashcat爆破/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/14/Hashcat爆破/" class="leancloud_visitors" data-flag-title="Hashcat爆破">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+        
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Hashcat-爆破"><a href="#Hashcat-爆破" class="headerlink" title="Hashcat 爆破"></a>Hashcat 爆破</h1><h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、Hashcat（https://hashcat.net/hashcat/）</span><br><span class="line">2、John the Ripper（https://www.openwall.com/john/）</span><br></pre></td></tr></table></figure>
+<h2 id="Offile爆破"><a href="#Offile爆破" class="headerlink" title="Offile爆破"></a>Offile爆破</h2><h3 id="一、利用John-the-Ripper-解析出Hash值"><a href="#一、利用John-the-Ripper-解析出Hash值" class="headerlink" title="一、利用John the Ripper 解析出Hash值"></a>一、利用John the Ripper 解析出Hash值</h3><p>1、运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、下载https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.7z</span><br><span class="line">2、python .\john-1.9.0-jumbo-1-win32\john-1.9.0-jumbo-1-win32\run\office2john.py demo.doc</span><br></pre></td></tr></table></figure></p>
+<p>2、解析出Hash值格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demo.doc:$oldoffice$0*4a625c8c6efcf7cd29ad4f748144e5f9*10f816f77b246b71d0fe8fb0e38d5444*b073a18a53d263855463cad7c3cd33da:::::demo.doc</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、Hashcat破解Hash值"><a href="#二、Hashcat破解Hash值" class="headerlink" title="二、Hashcat破解Hash值"></a>二、Hashcat破解Hash值</h3><p>1、运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hashcat64.exe -m 9700 hash.txt -a 3 -o found.txt --increment --increment-min 1 --increment-max 8 ?d?d?d?d?d?d?d?d</span><br></pre></td></tr></table></figure></p>
+<p>2、hash.txt里面存放格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$oldoffice$0*4a625c8c6efcf7cd29ad4f748144e5f9*10f816f77b246b71d0fe8fb0e38d5444*b073a18a53d263855463cad7c3cd33da</span><br></pre></td></tr></table></figure></p>
+<p>3、命令介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-m 9700 为office版本</span><br><span class="line">-a 3 为攻击模式，3为掩码暴力破解</span><br><span class="line">-o found.txt 破解结果输出到found.txt</span><br><span class="line">--increment --increment-min 1 --increment-max 8 为最小1位，最大8位密码暴力破解</span><br><span class="line">?d?d?d?d?d?d?d?d 为密码掩码</span><br></pre></td></tr></table></figure></p>
+<h2 id="Keepass爆破"><a href="#Keepass爆破" class="headerlink" title="Keepass爆破"></a>Keepass爆破</h2><h2 id="一、利用John-the-Ripper-解析出Hash值-1"><a href="#一、利用John-the-Ripper-解析出Hash值-1" class="headerlink" title="一、利用John the Ripper 解析出Hash值"></a>一、利用John the Ripper 解析出Hash值</h2><p>1、运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、下载https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.7z</span><br><span class="line">2、.\john-1.9.0-jumbo-1-win32\john-1.9.0-jumbo-1-win32\run\keepass2john.exe MyPass.kdbx</span><br></pre></td></tr></table></figure></p>
+<p>2、解析出Hash值格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MyPass:$keepass$*2*60000*0*c1f32c28e70f54b0badccdc9c6674347e0c86905721aa7c796435</span><br><span class="line">8529b7c0bd6*f8a68aa244b93c1ac8cca77f1f162821b5c3d1f652b5476fc66e18a683ea25a6*8ed</span><br><span class="line">905964bb3004af65e8fb0a24bdfaa*b9a52cfc4e49b320844cc2add8aa147cd76ca563dff68873f5</span><br><span class="line">bfd02ec870c2d9*c2574044a2f6b77e6856023963b3f8856dc7c01aa6b6cc3f596bde44c91bff95</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、Hashcat破解Hash值-1"><a href="#二、Hashcat破解Hash值-1" class="headerlink" title="二、Hashcat破解Hash值"></a>二、Hashcat破解Hash值</h3><p>1、运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hashcat64.exe -m 13400 hash.txt -a 3 -o found.txt --increment --increment-min 1 --increment-max 8 ?d?d?d?d?d?d?d?d</span><br></pre></td></tr></table></figure></p>
+<p>2、hash.txt里面存放格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$keepass$*2*60000*0*c1f32c28e70f54b0badccdc9c6674347e0c86905721aa7c796435</span><br><span class="line">8529b7c0bd6*f8a68aa244b93c1ac8cca77f1f162821b5c3d1f652b5476fc66e18a683ea25a6*8ed</span><br><span class="line">905964bb3004af65e8fb0a24bdfaa*b9a52cfc4e49b320844cc2add8aa147cd76ca563dff68873f5</span><br><span class="line">bfd02ec870c2d9*c2574044a2f6b77e6856023963b3f8856dc7c01aa6b6cc3f596bde44c91bff95</span><br></pre></td></tr></table></figure></p>
+<p>3、命令介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-m 13400 为keepass破解模式</span><br><span class="line">-a 3 为攻击模式，3为掩码暴力破解</span><br><span class="line">-o found.txt 破解结果输出到found.txt</span><br><span class="line">--increment --increment-min 1 --increment-max 8 为最小1位，最大8位密码暴力破解</span><br><span class="line">?d?d?d?d?d?d?d?d 为密码掩码</span><br></pre></td></tr></table></figure></p>
+<p>参考资料<a href="https://www.rubydevices.com.au/blog/how-to-hack-keepass" target="_blank" rel="noopener">https://www.rubydevices.com.au/blog/how-to-hack-keepass</a></p>
+<h2 id="RAR破解"><a href="#RAR破解" class="headerlink" title="RAR破解"></a>RAR破解</h2><h2 id="一、利用John-the-Ripper-解析出Hash值-2"><a href="#一、利用John-the-Ripper-解析出Hash值-2" class="headerlink" title="一、利用John the Ripper 解析出Hash值"></a>一、利用John the Ripper 解析出Hash值</h2><p>1、运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、下载https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.7z</span><br><span class="line">2、.\john-1.9.0-jumbo-1-win32\john-1.9.0-jumbo-1-win32\run\rar2john.exe demo.rar</span><br></pre></td></tr></table></figure></p>
+<p>2、解析出Hash值格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\win7_32\Desktop\demo.rar:$rar5$16$02f515e8c4b96380c60bbd2096</span><br><span class="line">bf1a46$15$41b2b47eb09094e99da80aebef828b0e$8$fbfe571d6a62125d</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、Hashcat破解Hash值-2"><a href="#二、Hashcat破解Hash值-2" class="headerlink" title="二、Hashcat破解Hash值"></a>二、Hashcat破解Hash值</h3><p>1、运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hashcat64.exe -m 13000 hash.txt -a 3 -o found.txt --increment --increment-min 1 --increment-max 8 ?d?d?d?d?d?d?d?d</span><br></pre></td></tr></table></figure></p>
+<p>2、hash.txt里面存放格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$rar5$16$02f515e8c4b96380c60bbd2096</span><br><span class="line">bf1a46$15$41b2b47eb09094e99da80aebef828b0e$8$fbfe571d6a62125d</span><br></pre></td></tr></table></figure></p>
+<p>3、命令介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-m 13000 为rar5的破解模式</span><br><span class="line">-a 3 为攻击模式，3为掩码暴力破解</span><br><span class="line">-o found.txt 破解结果输出到found.txt</span><br><span class="line">--increment --increment-min 1 --increment-max 8 为最小1位，最大8位密码暴力破解</span><br><span class="line">?d?d?d?d?d?d?d?d 为密码掩码</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/模拟窗口点击事件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1805,7 +1963,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1827,7 +1985,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
